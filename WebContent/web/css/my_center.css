@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+
+.leftSide{
+	position:absolute;
+	left:70%;
+	width:30%;
+	height:100%;
+	background-color:#2D335B;
+	color:white;
+	
+}
+
+.OsTextareaDiv {
+	position: absolute;
+	left: 20pt;
+	top: 20pt;
+	width:65%;
+}
+
+.textAreaText {
+	width: 90%;
+	height: 60pt;
+/* 	wrap: virtual; */
+	overflow: hidden;
+}
+
+.ossBody{
+	position: relative;
+	height:auto;
+	left: 0pt;
+	top: 150pt;
+	width:70%;
+	background-color: white;
+}
+
+
+
+.pageDivide{
+	position: fixed;
+	left: 23%;
+	top: 86%;
+	width:50%;
+	border-radius:50pt;
+	background-color: none;
+	
+}
+.pageDivide table tr{
+	font-size:22pt;
+	color:#333333;
+	box-shadow:15px 15px 7px #333333;
+	border:1px solid #fff;
+	background-color: white;
+}
+.pageDivide table tr td{
+	
+}
+

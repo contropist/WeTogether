@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.wetogether.common.hibernate.pojos.Album" table="T_ALBUM" >
+    
+        <id name="albumId" type="java.lang.Integer">
+            <column name="ALBUM_ID" precision="22" scale="0" />
+            <generator class="native" />
+        </id>
+        
+        <property name="albunName" type="java.lang.String">
+            <column name="ALBUN_NAME" length="60" not-null="true" />
+        </property>
+        
+        <property name="albumDesc" type="java.lang.String">
+            <column name="ALBUM_DESC" length="240" />
+        </property>
+        
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATE_TIME" length="40" />
+        </property>
+        
+        <property name="indexPhoto" type="java.lang.String">
+            <column name="INDEX_PHOTO" length="120" />
+        </property>
+        
+        
+        <many-to-one name="albumOwer"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="ALBUM_OWER" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+        
+        <set name="photos" inverse="true" lazy="false">
+            <key>
+                <column name="ALBUM_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.wetogether.common.hibernate.pojos.Photo" />
+        </set>
+        
+    </class>
+</hibernate-mapping>

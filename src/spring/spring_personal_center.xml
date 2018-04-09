@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+
+
+	<!-- PersonCenter Action Start -->
+	<bean id="PersonalCenterAction"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+<!-- 	添加新相册 -->
+	<bean id="addNewAlbum"
+		class="com.wetogether.personalCenter.action.AddNewAlbum"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+<!-- 	查询当前页相册 -->
+	<bean id="showAlbumAction"
+		class="com.wetogether.personalCenter.action.ShowAlbumAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+<!-- 	查询当前页图片 -->
+		<bean id="showPhotoAction"
+		class="com.wetogether.personalCenter.action.FindAllPhoto"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+<!-- 	设置封面 -->
+	<bean id="setAlbumIndex"
+		class="com.wetogether.personalCenter.action.SetAlbumIndex"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+
+<!-- 	删除图片 -->
+	<bean id="deletePhoto"
+		class="com.wetogether.personalCenter.action.DeletePhoto"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>	
+	
+<!-- 	当前用户所有图片 -->
+		<bean id="allPics"
+		class="com.wetogether.personalCenter.action.FindAllMyPhotos"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>	
+
+
+<!-- 	上传图片 -->
+	<bean id="uploadPhotoAction"
+		class="com.wetogether.personalCenter.action.UploadNewPhoto"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+
+
+	
+	
+<!-- 	通过AJAX查询当前用户的所有好友 -->
+	<bean id="SearchFriendsAction"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+	
+	
+	<!-- 	通过好友ID查询好友详细信息 -->
+	<bean id="showFriendMessageAction"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+	
+	<!-- 	通过AJAX添加当前用户的新说说 -->
+	<bean id="InsertMyNewOsAction"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+<!-- 	赞说说 -->
+	<bean id="zanOsAction"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+	
+	
+	<!-- 	通过AJAX   通过userId查询User -->
+	<bean id="findUserByIdAction"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+	
+
+	
+	<!-- 	获得当前用户的所有好友的说说 -->
+	<bean id="showFriendOSsAction"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+		<!-- 	删除说说 -->
+	<bean id="removeOS"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+	
+	
+	<!-- 	获得当前用户自己的所有说说 -->
+	<bean id="showMyOSsAction"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+<!-- 	添加新评论到OS -->
+	<bean id="newCommentToOs"
+		class="com.wetogether.personalCenter.action.PersonalCenterAction"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+	
+	
+	<!-- 	添加新文章 -->
+	<bean id="DeleteArticle"
+		class="com.wetogether.personalCenter.action.ArticleManager"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+		<bean id="insertArticleAction"
+		class="com.wetogether.personalCenter.action.ArticleManager"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+<!-- 	评论文章 -->
+	<bean id="CommentArticle"
+		class="com.wetogether.personalCenter.action.ArticleManager"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>	
+<!-- 	获取评论 -->
+		<bean id="showCommentOfArticle"
+		class="com.wetogether.personalCenter.action.ArticleManager"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>	
+	
+	
+	
+	
+	<!-- 		展示指定分类的所有文章 -->
+	<bean id="showDailyRecordsAction"
+		class="com.wetogether.personalCenter.action.ArticleManager"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+	<bean id="showArticleByArticleId"
+		class="com.wetogether.personalCenter.action.ArticleManager"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+
+<!-- 留言 -->
+	<bean id="InsertBbs"
+		class="com.wetogether.personalCenter.action.BBSManager"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+		<property name="userServices" ref="userServices" />
+	</bean>
+	<!-- 最新留言提示 -->
+	<bean id="GetBBSCount"
+		class="com.wetogether.personalCenter.action.GetBBSCount"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+	
+	
+
+<bean id="GetAllBBSs"
+		class="com.wetogether.personalCenter.action.BBSManager"
+		scope="request">
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+		<property name="userServices" ref="userServices" />
+	</bean>
+
+
+
+	<!-- PersonCenter Action End -->
+
+
+	<!-- PersonCenter Services Start -->
+	<bean id="iPersonalCenterServices"
+		class="com.wetogether.personalCenter.service.impl.PersonalCenterServicesImpl">
+		<property name="pcDao" ref="pcDao" />
+	</bean>
+	<!-- PersonCenter Services End -->
+
+
+
+	<!-- PersonCenter Dao Start -->
+	<bean id="pcDao"
+		class="com.wetogether.personalCenter.dao.impl.PersonalCenterDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+
+	<!-- PersonCenter Dao End -->
+
+
+
+</beans>

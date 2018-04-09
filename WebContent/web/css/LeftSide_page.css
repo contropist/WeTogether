@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+.time{
+	position:absolute;
+	top:1pt;
+	
+}
+.timeButton{
+	width: 150pt;
+	height: 50pt;
+	color:white;
+	background-color: purple;
+	box-shadow:15px 15px 7px #333333;
+	border-radius:0%;
+	font-size:20pt;
+}
+.toTop{
+	position: fixed;
+	left:77%;
+	top: 83%;
+	width: auto;
+	height: auto;
+}

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.wetogether.common.hibernate.pojos.User" table="T_USER">
+		<id name="userId" type="java.lang.Integer">
+			<column name="USER_ID" precision="22" scale="0" />
+			<generator class="native" />
+		</id>
+
+		<property name="userName" type="java.lang.String">
+			<column name="USER_NAME" length="20" not-null="true" />
+		</property>
+		
+		
+		<property name="nickName" type="java.lang.String">
+			<column name="NICK_NAME" length="20"  />
+		</property>
+
+		<property name="password" type="java.lang.String">
+			<column name="PASSWORD" length="20" not-null="true" />
+		</property>
+
+		<property name="email" type="java.lang.String">
+			<column name="EMAIL" length="40" not-null="true" />
+		</property>
+
+		<property name="chinaName" type="java.lang.String">
+			<column name="CHINA_NAME" length="20" />
+		</property>
+		
+		<property name="personalWord" type="java.lang.String">
+			<column name="PERSONAL_WORD" length="120" />
+		</property>
+
+		<property name="gender" type="java.lang.Integer">
+			<column name="GENDER" length="10" />
+		</property>
+
+
+
+		<property name="idNumber" type="java.lang.String">
+			<column name="ID_NUMBER" length="20" />
+		</property>
+
+		<property name="graduateDate" type="java.lang.String">
+			<column name="GRADUATEDATE" />
+		</property>
+
+		<property name="birthday" type="java.lang.String">
+			<column name="BIRTHDAY" />
+		</property>
+		<property name="regDate" type="java.util.Date">
+			<column name="REG_DATE" not-null="true" />
+		</property>
+
+		<property name="mobile" type="java.lang.String">
+			<column name="MOBILE" length="20" />
+		</property>
+		<property name="qqNumber" type="java.lang.String">
+			<column name="QQ_NUMBER" length="20" />
+		</property>
+		
+		<property name="isOnline" type="java.lang.Integer">
+			<column name="IS_ONLINE" length="1" />
+		</property>
+		<property name="address" type="java.lang.String">
+			<column name="ADDRESS" length="160" />
+		</property>
+		
+		
+		<property name="picName" type="java.lang.String">
+			<column name="PIC_NAME" length="60" />
+		</property>
+		<property name="loginTimes" type="java.lang.Integer" >
+			<column name="LOGIN_TIMES" length="20" />
+		</property>
+		
+
+		<list name="friends" inverse="true" cascade="all">
+			<key>
+				<column name="CURRENT_USER_ID" precision="22" scale="0"
+					not-null="true" />
+			</key>
+			<index column="FRIEND_ID" />
+			<one-to-many class="com.wetogether.common.hibernate.pojos.Friend" />
+		</list>
+		<list name="messages" inverse="true" cascade="all">
+			<key>
+				<column name="TO_WHO" precision="22" scale="0"
+					not-null="true" />
+			</key>
+			<index column="MESSAGE_ID" />
+			<one-to-many class="com.wetogether.common.hibernate.pojos.DynamicMessage" />
+		</list>
+		
+
+		<many-to-one name="userType"
+			class="com.wetogether.common.hibernate.pojos.UserType" fetch="select"
+			lazy="false">
+			<column name="USER_TYPE_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		
+		
+		<many-to-one name="college"
+			class="com.wetogether.common.hibernate.pojos.College" fetch="select"
+			lazy="false">
+			<column name="COLLEGE_ID" precision="22" scale="0" not-null="false" />
+		</many-to-one>
+		
+		
+		<many-to-one name="university"
+			class="com.wetogether.common.hibernate.pojos.University" fetch="select"
+			lazy="false">
+			<column name="UNIVERSITY_ID" precision="22" scale="0" not-null="false" />
+		</many-to-one>
+
+		<set name="bbs" inverse="true" lazy="false" order-by="subDate desc">
+			<key column="BBS_OWER_ID" />
+			<one-to-many class="com.wetogether.common.hibernate.pojos.BBS" />
+		</set>
+		<set name="albums" inverse="true" lazy="false" order-by="createTime desc">
+			<key column="ALBUM_OWER" />
+			<one-to-many class="com.wetogether.common.hibernate.pojos.Album" />
+		</set>
+		
+		<set name="connecters" inverse="true" lazy="false" order-by="lastConnectTime desc">
+			<key column="WHOSE" />
+			<one-to-many class="com.wetogether.common.hibernate.pojos.RecentlyConnecter" />
+		</set>
+		
+		
+		
+
+	</class>
+</hibernate-mapping>

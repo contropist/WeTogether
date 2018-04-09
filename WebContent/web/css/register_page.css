@@ -1,0 +1,77 @@
+@CHARSET "UTF-8";
+
+.startSymbol {
+	color: red;
+}
+
+.header {
+	color: #CCCCCC;
+	font-size: 26px;
+	position: absolute;
+	top: 5%;
+	left: 40%;
+}
+
+.form_body {
+	position: absolute;
+	top: 5%;
+	left: 10%;
+	width: 80%;
+}
+
+.form_body_basic {
+	position: relative;
+	left: 0%;
+}
+
+.form_body_basic_tittle {
+	position: relative;
+	left: 0%;
+	color: #CCCCCC;
+	font-size: 22px;
+}
+
+.form_body_basic_body {
+	position: relative;
+	left: 10%;
+	color: #CCCCCC;
+	font-size: 22px;
+}
+
+.form_body_detial {
+	position: relative;
+	left: 0%;
+}
+
+.form_body_detial_tittle {
+	position: relative;
+	left: 0%;
+	color: #CCCCCC;
+	font-size: 22px;
+}
+
+.form_body_detial_body {
+	position: relative;
+	left: 10%;
+	color: #CCCCCC;
+	font-size: 22px;
+	margin-top: 10pt;
+}
+
+.button {
+	border-style: groove;
+	width: 1200pt;
+	border-color: white;
+	background-color: white;
+	color: #333333;
+	font-size: 18pt;
+	border-radius: 25px;
+	font-size: 16pt;
+}
+
+.hidden_message {
+	display: none;
+	color: red;
+	font-size: 14pt;
+	margin-bottom: 10pt;
+}

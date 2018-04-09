@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="othersspace" extends="global-struts">
+
+
+<!-- 	跳转到他的主页 -->
+	<action name="toHisIndexPage" class="toHisIndexPage"  method="toHisIndexPage" >
+		<result name="success">/web/othersSpace/HisIndex.jsp</result>
+	</action>
+	
+<!-- 	跳转到他的日志页面 -->
+	<action name="getAllDaliyRecords" class="getAllDaliyRecords"  method="getAllDaliyRecords" >
+		<result name="success">/web/othersSpace/HisDaliyRecord.jsp</result>
+	</action>
+	
+		
+			
+		 
+	</package>
+
+</struts>

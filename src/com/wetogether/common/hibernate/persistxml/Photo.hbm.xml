@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.wetogether.common.hibernate.pojos.Photo" table="T_PHOTO" >
+    
+        <id name="photoId" type="java.lang.Integer">
+            <column name="PHOTO_ID" precision="22" scale="0" />
+            <generator class="native" />
+        </id>
+        
+        <property name="photoName" type="java.lang.String">
+            <column name="PHOTO_NAME" length="60" not-null="true" />
+        </property>
+        
+        <property name="photoDesc" type="java.lang.String">
+            <column name="PHOTO_DESC" length="240" />
+        </property>
+        
+        <property name="photoSrc" type="java.lang.String">
+            <column name="PHOTO_SRC" length="120" />
+        </property>
+        
+         <many-to-one name="albumId"
+			class="com.wetogether.common.hibernate.pojos.Album" fetch="select"
+			lazy="false">
+			<column name="ALBUM_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+        
+    </class>
+</hibernate-mapping>

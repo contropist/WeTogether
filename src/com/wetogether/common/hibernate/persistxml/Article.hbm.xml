@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.wetogether.common.hibernate.pojos.Article" table="T_ARTICLE">
+		<id name="articleId" type="java.lang.Integer">
+			<column name="ARTICLE_ID" precision="22" scale="0" />
+			<generator class="native" />
+		</id>
+
+		<property name="articleName" type="java.lang.String">
+			<column name="ARTICLE_NAME" length="2000" not-null="true" />
+		</property>
+		
+		
+		<property name="clickTime" type="java.lang.Integer">
+			<column name="CLICK_TIME" length="20" not-null="false" />
+		</property>
+		
+		<property name="articleContent" type="java.lang.String">
+			<column name="ARTICLE_CONTENT" length="100000"  />
+		</property>
+
+		<property name="subDate" type="java.util.Date">
+			<column name="SUB_DATE" length="20" not-null="true" />
+		</property>
+
+		
+		
+		
+
+<!-- 		<list name="comments" inverse="true" cascade="all" lazy="false"> -->
+<!-- 			<key> -->
+<!-- 				<column name="ARTICLE_ID" precision="22" scale="0" -->
+<!-- 					not-null="true" /> -->
+<!-- 			</key> -->
+<!-- 			<index column="COMMENT_ID" /> -->
+<!-- 			<one-to-many class="com.wetogether.common.hibernate.pojos.Comment" /> -->
+<!-- 		</list> -->
+
+	<set name="comments" inverse="true" cascade="all" lazy="false" order-by="subDate desc">
+		<key column="ARTICLE_ID" />
+		<one-to-many class="com.wetogether.common.hibernate.pojos.CommentOfArticle" />
+	</set>
+
+	<set name="dms" inverse="true" cascade="all" lazy="false">
+		<key column="ARTICLE_ID" />
+		<one-to-many class="com.wetogether.common.hibernate.pojos.DynamicMessage" />
+	</set>
+
+
+		<many-to-one name="articleOwerId"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="ARTICLE_OWERID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		
+		
+		<many-to-one name="articleCategory"
+			class="com.wetogether.common.hibernate.pojos.ArticleCategory" fetch="select"
+			lazy="false">
+			<column name="CATEGORY_ID" precision="22" scale="0" not-null="false" />
+		</many-to-one>
+		
+		
+
+
+
+	</class>
+</hibernate-mapping>

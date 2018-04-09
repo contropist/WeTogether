@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="Person_Center" extends="global-struts">
+
+
+		<action name="PersonalCenterAction" class="PersonalCenterAction"  method="friendList">
+			<result name="success">/web/jsp/result/friendList.jsp</result>
+			<result name="input">/web/login.jsp</result>
+		</action>
+		 
+<!-- 		 新建相册 -->
+		<action name="addNewAlbum" class="addNewAlbum"  method="addNewAlbum" />
+<!-- 	查询当前页的相册	 -->
+		<action name="showAlbumAction" class="showAlbumAction"  method="showAllAlbum">
+			<result name="success">/web/jsp/photoAlbum/AlbumIndex.jsp</result>
+		</action>
+<!-- 		查询当前页图片 -->
+		<action name="showPhotoAction" class="showPhotoAction"  method="findAllPhoto">
+			<result name="success">/web/jsp/photoAlbum/PhotoPage.jsp</result>
+		</action>
+<!-- 		上传图片 -->
+		<action name="uploadPhotoAction" class="uploadPhotoAction"  method="uploadPhoto">
+			<!-- 限制图片的格式和图片的大小 -->
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    image/bmp,image/png,image/gif,image/jpeg,image/jpg
+                </param>
+                <param name="maximumSize">4096000</param>
+            </interceptor-ref>
+            
+            <!-- 默认的拦截器，必须要写 -->
+            <interceptor-ref name="defaultStack" />
+			<result name="success">showAlbumAction</result>
+		</action>
+		<!-- 设置封面 -->
+	<action name="setAlbumIndex" class="setAlbumIndex"  method="setAlbumIndex" />	
+<!-- 	删除图片 -->
+	<action name="deletePhoto" class="deletePhoto"  method="deletePhoto" />
+<!-- 	当前用户所有图片 -->
+	<action name="allPics" class="allPics"  method="getAllPhoto" >
+		<result name="success">/web/jsp/main.jsp</result>
+	</action>
+<!-- 		通过好友ID查询其详细信息 -->
+		<action name="showFriendMessageAction" class="showFriendMessageAction"  method="findFriendByFriendId">
+			<result name="success">/web/jsp/personalCenter/friendMessagePage.jsp</result>
+		</action>
+		
+
+		
+		
+<!-- 		AJAX SearchFriends -->
+		<action name="SearchFriendsAction" class="SearchFriendsAction"  method="searchFriendsByAjax" />
+			
+		<!-- 		AJAX InsertMyNewOs -->
+		<action name="InsertMyNewOsAction" class="InsertMyNewOsAction"  method="insertMyNewOsByAjax" />
+		
+		
+<!-- 		AJAX findUserById -->
+		<action name="findUserByIdAction" class="findUserByIdAction"  method="findUserById" />
+		
+		<!-- 		AJAX addNewFriend -->
+		<!-- 		添加好友 -->
+		<action name="addNewFriendAction" class="addNewFriendAction"  method="addNewFriend" />
+		
+		
+		<!-- 		获得当前用户所有好友的说说 -->
+		<action name="showFriendOSsAction" class="showFriendOSsAction"  method="getAllOriginalSignatures">
+			<result name="success">/web/jsp/personalCenter/FriendsOSMessage.jsp</result>
+		</action>
+<!-- 		赞说说 -->
+		<action name="zanOsAction" class="zanOsAction"  method="zanOs" />
+		
+		<!-- 		获得当前用户自己的所有说说 -->
+		<action name="showMyOSsAction" class="showMyOSsAction"  method="getAllOssOfMine">
+			<result name="success">/web/jsp/personalCenter/myPersonalCenter.jsp</result>
+		</action>
+	
+			<!-- 		删除说说 -->
+		<action name="removeOS" class="removeOS"  method="deleteOS" />
+			
+		
+		
+		
+<!-- 		添加新评论到说说 -->
+		<action name="newCommentToOs" class="newCommentToOs"  method="newCommentToOs" />
+		
+		
+		
+		
+<!-- 		发表新文章 -->
+		<action name="insertArticleAction" class="insertArticleAction"  method="addNewArticle">
+			<result name="success">showDailyRecordsAction</result>
+		</action>
+			
+<!-- 		删除文章 -->
+		<action name="DeleteArticle" class="DeleteArticle"  method="deleteArticle" />
+		
+<!-- 		评论文章 -->
+		<action name="CommentArticle" class="CommentArticle"  method="comment" />
+			
+<!-- 		获取评论 -->
+		<action name="showCommentOfArticle" class="showCommentOfArticle"  method="getComments">
+		</action>	
+		
+<!-- 		展示指定分类的所有文章  type="redirect"-->
+		<action name="showDailyRecordsAction" class="showDailyRecordsAction"  method="findAllArticle">
+			<result name="success" >/web/jsp/dailyRecord/DailyRecord.jsp</result>
+		</action>
+		<action name="showArticleByArticleId" class="showArticleByArticleId"  method="findArticle">
+			<result name="success" >/web/jsp/dailyRecord/viewArticle.jsp</result>
+		</action>
+<!-- 		给指定用户留言 -->
+			<action name="InsertBbs" class="InsertBbs"  method="addBBS" />
+<!-- 			查找所有留言 -->
+			<action name="GetAllBBSs" class="GetAllBBSs"  method="getBBSs">
+					<result name="success" >/web/othersSpace/BBS.jsp</result>
+			</action>
+
+<!-- 给我的留言 -->
+	<action name="GetAllBBSsOfMine" class="GetAllBBSs" method="getBBSs">
+		<result name="success">/web/jsp/personalCenter/BBS.jsp</result>
+	</action>
+	
+	<!-- 获取最新留言提示 -->
+	<action name="GetBBSCount" class="GetBBSCount" method="GetBBSCount" />
+		
+			
+	
+			
+	</package>
+
+</struts>

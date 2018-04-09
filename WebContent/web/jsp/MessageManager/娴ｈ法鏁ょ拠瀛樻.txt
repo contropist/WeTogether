@@ -1,0 +1,31 @@
+﻿
+安装及部署
+
+	1. 上传到 apache，iis，tomcat 服务器，通过域名访问 index.html 例如：http://localhost/js/index.html
+
+功能介绍：
+
+	1.上传并预览，用户可以任意选择区域，支持头像旋转
+	
+	2.支持上传成功，js 回调函数
+	
+	3.无论图片过大还是过小，都可以按照固定大小显示
+	
+	4.支持亮度，对比度，饱和度修饰
+	
+	5.支持头像拍照保存
+	
+	6.支持php，asp，jsp 调用
+	
+	7.兼容性好，任何浏览器都正常使用
+
+注意事项:
+
+　　1.确定存储图片目录可写权限, iis+win  存储图片目录是 everyone 用户，apache+linux，需要可写权限(777)
+
+
+联系我们：
+
+　　QQ：439884988
+
+    官网：http://www.hdfu.net 或者 http://www.easymvc.com

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.wetogether.common.hibernate.pojos.DynamicMessage" table="T_DYNAMIC_MESSAGE">
+		<id name="messageId" type="java.lang.Integer">
+			<column name="MESSAGE_ID" precision="22" scale="0" />
+			<generator class="native" />
+		</id>
+
+		<property name="messageTime" type="java.util.Date">
+			<column name="MESSAGE_TIME" length="20" not-null="true" />
+		</property>
+		
+		<property name="messageStatus" type="java.lang.Integer">
+			<column name="MESSAGE_STATUS" length="2" not-null="true" />
+		</property>
+		
+		
+		
+		
+
+		<many-to-one name="toWho"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="TO_WHO" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="fromWho"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="FROM_WHO" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		<many-to-one name="messageType"
+			class="com.wetogether.common.hibernate.pojos.MessageType" fetch="select"
+			lazy="false">
+			<column name="MESSAGE_TYPE_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="os"
+			class="com.wetogether.common.hibernate.pojos.OriginalSignature" fetch="select"
+			lazy="false">
+			<column name="OS_ID" precision="22" scale="0"  />
+		</many-to-one>
+		<many-to-one name="article"
+			class="com.wetogether.common.hibernate.pojos.Article" fetch="select"
+			lazy="false">
+			<column name="ARTICLE_ID" precision="22" scale="0"  />
+		</many-to-one>
+		
+
+	</class>
+</hibernate-mapping>

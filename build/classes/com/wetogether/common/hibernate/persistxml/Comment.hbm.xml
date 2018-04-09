@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.wetogether.common.hibernate.pojos.Comment" table="T_COMMENT">
+		<id name="commentId" type="java.lang.Integer">
+			<column name="COMMENT_ID" precision="22" scale="0" />
+			<generator class="native" />
+		</id>
+
+		<property name="commentContent" type="java.lang.String">
+			<column name="COMMENT_CONTENT" length="1000"  />
+		</property>
+
+		<property name="commentTime" type="java.util.Date">
+			<column name="COMMENT_TIME" length="20"  />
+		</property>
+
+
+
+		<many-to-one name="commentUser"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="COMMENT_USER_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		
+
+		<many-to-one name="os"
+			class="com.wetogether.common.hibernate.pojos.OriginalSignature" fetch="select"
+			lazy="false">
+			<column name="ORIGINALSIGNATURE_ID" precision="22" scale="0" not-null="false" />
+		</many-to-one>		
+		<many-to-one name="photoId"
+			class="com.wetogether.common.hibernate.pojos.Photo" fetch="select"
+			lazy="false">
+			<column name="PHOTO_ID" precision="22" scale="0" not-null="false" />
+		</many-to-one>
+		<many-to-one name="articleId"
+			class="com.wetogether.common.hibernate.pojos.Article" fetch="select"
+			lazy="false">
+			<column name="ARTICLE_ID" precision="22" scale="0" not-null="false" />
+		</many-to-one>
+
+
+	</class>
+</hibernate-mapping>

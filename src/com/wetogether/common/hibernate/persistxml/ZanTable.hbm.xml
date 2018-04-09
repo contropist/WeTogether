@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.wetogether.common.hibernate.pojos.ZanTable" table="T_ZAN">
+		<id name="zanId" type="java.lang.Integer">
+			<column name="ZAN_ID" precision="22" scale="0" />
+			<generator class="native" />
+		</id>
+
+		<many-to-one name="os"
+			class="com.wetogether.common.hibernate.pojos.OriginalSignature" fetch="select"
+			lazy="false">
+			<column name="OS_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="zanUser"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="USER_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+
+
+
+	</class>
+</hibernate-mapping>

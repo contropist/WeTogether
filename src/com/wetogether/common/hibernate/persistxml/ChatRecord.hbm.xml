@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.wetogether.common.hibernate.pojos.ChatRecord" table="T_CHAT_RECORD" >
+    
+        <id name="recordId" type="java.lang.Integer">
+            <column name="RECORD_ID" precision="22" scale="0" />
+            <generator class="native" />
+        </id>
+        
+        
+        
+        <many-to-one name="fromUser"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="FROM_USER" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+        
+         <many-to-one name="toUser"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="TO_USER" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+       
+        
+       
+        
+        
+        
+        <property name="messageContent" type="java.lang.String">
+            <column name="MESSAGE_CONTENT" length="240" />
+        </property>
+        
+         <property name="messageStatus" type="java.lang.Integer" >
+            <column name="MESSAGE_STATUS" length="2" not-null="true" />
+        </property>
+        
+         <property name="sentTime" type="java.util.Date">
+            <column name="SENT_TIME" length="20" not-null="true" />
+        </property>
+        
+        
+       
+        
+    </class>
+</hibernate-mapping>

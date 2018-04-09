@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.wetogether.common.hibernate.pojos.OriginalSignature" table="T_ORIGINALSIGNATURE" >
+    
+        <id name="originalSignatureId" type="java.lang.Integer">
+            <column name="ORIGINALSIGNATURE_ID" precision="22" scale="0" />
+            <generator class="native" />
+        </id>
+        
+        <property name="osContent" type="java.lang.String">
+            <column name="OS_CONTENT" length="1000"  />
+        </property>
+        
+        <property name="osSubmitDate" type="java.util.Date">
+            <column name="OS_SUBMIT_DATE" length="60" />
+        </property>
+        
+<!--         <list name="comments" inverse="true" lazy="false"> -->
+<!--             <key> -->
+<!--                 <column name="ORIGINALSIGNATURE_ID" precision="22" scale="0" not-null="true" /> -->
+<!--             </key> -->
+<!--             <index column="COMMENT_ID" /> -->
+<!--             <one-to-many class="com.wetogether.common.hibernate.pojos.Comment" /> -->
+<!--         </list> -->
+
+	<set name="comments" inverse="true" lazy="false" cascade="all" order-by="commentTime asc">
+		<key column="ORIGINALSIGNATURE_ID" />
+		<one-to-many class="com.wetogether.common.hibernate.pojos.Comment" />
+	</set>
+        
+     <set name="zans" inverse="true" lazy="false" cascade="all"> 
+            <key>
+                <column name="OS_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.wetogether.common.hibernate.pojos.ZanTable" />
+        </set>
+
+	<set name="dms" inverse="true" lazy="false" cascade="all">
+		<key>
+			<column name="OS_ID" precision="22" scale="0" not-null="true" />
+		</key>
+		<one-to-many class="com.wetogether.common.hibernate.pojos.DynamicMessage" />
+	</set>
+
+	
+        
+        <many-to-one name="osOwer"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="OS_OWER_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+        
+    </class>
+</hibernate-mapping>

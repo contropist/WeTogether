@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.wetogether.common.hibernate.pojos.ArticleCategory" table="T_ARTICLE_CATEGORY" >
+    
+        <id name="categoryId" type="java.lang.Integer">
+            <column name="CATEGORY_ID" precision="22" scale="0" />
+            <generator class="native" />
+        </id>
+        
+        <property name="categoryName" type="java.lang.String">
+            <column name="CATEGORY_NAME" length="60" not-null="true" />
+        </property>
+        
+        <property name="categoryDesc" type="java.lang.String">
+            <column name="CATEGORY_DESC" length="240" />
+        </property>
+        
+        <list name="articles" inverse="true">
+            <key>
+                <column name="CATEGORY_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <index column="ARTICLE_Id" />
+            <one-to-many class="com.wetogether.common.hibernate.pojos.Article" />
+        </list>
+        
+    </class>
+</hibernate-mapping>

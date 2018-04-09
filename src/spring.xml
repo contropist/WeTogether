@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<!-- USER MANAGEMENT START -->
+	<!--Action Start -->
+	<bean id="RegisterAction" class="com.wetogether.usermanagement.action.RegisterAction"
+		scope="request">
+		<property name="userServices" ref="userServices" />
+	</bean>
+
+<!-- 检测用户名是否存在 -->
+	<bean id="CheckUsername" class="com.wetogether.check.action.CheckUserName"
+		scope="request">
+		<property name="userServices" ref="userServices" />
+	</bean>
+<!-- 多条件查询用户 -->
+<bean id="siftingAction" class="com.wetogether.usermanagement.action.FindUsersAction"
+	scope="request">
+	<property name="userServices" ref="userServices" />
+</bean>
+
+	<!-- 	通过AJAX   添加新好友 -->
+	<bean id="addNewFriendAction"
+		class="com.wetogether.usermanagement.action.AddNewFriend"
+		scope="request">
+		<property name="userServices" ref="userServices" />
+		<property name="iPersonalCenterServices" ref="iPersonalCenterServices" />
+	</bean>
+<!-- 获得所有大学 -->
+<bean id="getAllUniversityAction" class="com.wetogether.usermanagement.action.GetAllUniAndCollege"
+	scope="request">
+	<property name="userServices" ref="userServices" />
+</bean>
+<!-- 获得对应学院 -->
+<bean id="getColleges" class="com.wetogether.usermanagement.action.GetAllUniAndCollege"
+	scope="request">
+	<property name="userServices" ref="userServices" />
+</bean>
+	
+<!-- 	查询我的详细信息 -->
+	<bean id="showMyDetailMessage"
+	class="com.wetogether.usermanagement.action.UserMessageManagement" scope="request">
+	<property name="userServices" ref="userServices" />
+	</bean>
+<!-- 	查询指定好友的详细信息 -->
+	<bean id="getUserMessage"
+	class="com.wetogether.usermanagement.action.FindSingleUser" scope="request">
+	<property name="userServices" ref="userServices" />
+	</bean>	
+	
+	
+	
+<!-- 修改个人信息 -->
+
+<bean id="modifyMyDetailMessage"
+	class="com.wetogether.usermanagement.action.ModifyMyMessage" scope="request">
+	<property name="userServices" ref="userServices" />
+	</bean>
+
+
+<!-- 获得对应大学下的所有学院 -->
+	<bean id="getAllCollegeAction" class="com.wetogether.usermanagement.action.GetAllUniAndCollege"
+		scope="request">
+		<property name="userServices" ref="userServices" />
+	</bean>
+
+
+	<!--Action End -->
+
+	<!-- Services Start -->
+	<bean id="userServices"
+		class="com.wetogether.usermanagement.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	<!-- Servicer End -->
+
+	<!-- Dao Start -->
+	<bean id="userDao" class="com.wetogether.usermanagement.dao.impl.UserDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<!-- Dao End -->
+
+	<!-- USER MANAGEMENT END -->
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- LOGIN MOUDLE START -->
+
+	<bean id="loginAction" class="com.wetogether.login.action.LoginAction"
+		scope="request">
+		<property name="loginServices" ref="loginServices" />
+	</bean>
+
+	<bean id="logoutAction" class="com.wetogether.login.action.LogoutAction"
+		scope="request">
+	</bean>
+	
+
+	<bean id="loginServices" class="com.wetogether.login.service.impl.LoginServicesImpl">
+		<property name="allDaos" ref="allDaos" />
+	</bean>
+
+
+	<bean id="allDaos" class="com.wetogether.allDaos.impl.AllDaosImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<!-- LOGIN MOUDLE END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+	<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> -->
+	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property> -->
+	<!-- <property name="username" value="ETP"></property> -->
+	<!-- <property name="password" value="123"></property> -->
+	<!-- </bean> -->
+	
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+<!--		<property name="url" value="jdbc:mysql://115.159.123.34:3306/wetogether" />-->
+		<property name="url" value="jdbc:mysql://localhost/wetogether" />
+		<property name="username" value="root" />
+		<property name="password" value="901010" />
+	</bean>
+
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop> -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/wetogether/common/hibernate/persistxml/UserType.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/User.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/Comment.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/Friend.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/OriginalSignature.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/College.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/University.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/Article.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/ArticleCategory.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/CommentOfArticle.hbm.xml</value>
+				<value>com/wetogether/common/hibernate/persistxml/ZanTable.hbm.xml</value>	
+				<value>com/wetogether/common/hibernate/persistxml/DynamicMessage.hbm.xml</value>	
+				<value>com/wetogether/common/hibernate/persistxml/MessageType.hbm.xml</value>	
+				<value>com/wetogether/common/hibernate/persistxml/BBS.hbm.xml</value>	
+				<value>com/wetogether/common/hibernate/persistxml/Album.hbm.xml</value>	
+				<value>com/wetogether/common/hibernate/persistxml/Photo.hbm.xml</value>		
+				<value>com/wetogether/common/hibernate/persistxml/ChatRecord.hbm.xml</value>		
+				<value>com/wetogether/common/hibernate/persistxml/RecentlyConnecter.hbm.xml</value>		
+					
+					
+					
+			</list>
+		</property>
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="applicationCut"
+			expression="execution(* com.wetogether.*.service.impl.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="applicationCut" />
+	</aop:config>
+
+	<import resource="spring/spring_personal_center.xml"></import>
+	<import resource="spring/spring_chat.xml"></import>
+	<import resource="spring/spring_othersspace.xml"></import>
+
+
+</beans>

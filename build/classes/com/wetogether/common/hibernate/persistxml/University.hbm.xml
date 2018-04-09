@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.wetogether.common.hibernate.pojos.University" table="T_UNIVERSITY" >
+    
+        <id name="universityId" type="java.lang.Integer">
+            <column name="UNIVERSITY_ID" precision="22" scale="0" />
+            <generator class="native" />
+        </id>
+        
+        <property name="universityName" type="java.lang.String">
+            <column name="UNIVERSITY_NAME" length="60" not-null="true" />
+        </property>
+        
+        <property name="universityDesc" type="java.lang.String">
+            <column name="UNIVERSITY_DESC" length="240" />
+        </property>
+        
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" length="240" />
+        </property>
+        
+        <set name="colleges" inverse="true" lazy="false" cascade="all" order-by="collegeName asc">
+            <key>
+                <column name="UNIVERSITY_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.wetogether.common.hibernate.pojos.College" />
+        </set>
+        
+        <list name="users" inverse="true" cascade="all">
+            <key>
+                <column name="UNIVERSITY_ID" precision="22" scale="0" not-null="false" />
+            </key>
+            <index column="USER_ID" />
+            <one-to-many class="com.wetogether.common.hibernate.pojos.User" />
+        </list>
+        
+    </class>
+</hibernate-mapping>

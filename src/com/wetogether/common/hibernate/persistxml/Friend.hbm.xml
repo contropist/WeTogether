@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.wetogether.common.hibernate.pojos.Friend" table="T_FRIEND">
+		<id name="friendId" type="java.lang.Integer">
+			<column name="FRIEND_ID" precision="22" scale="0" />
+			<generator class="native" />
+		</id>
+
+		<property name="addDate" type="java.util.Date">
+			<column name="ADD_DATE" length="20" not-null="true" />
+		</property>
+		
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" length="20" not-null="false" />
+		</property>
+		
+
+		<many-to-one name="currentUser"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="CURRENT_USER_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="friendUser"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="FRIEND_USER_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+
+
+	</class>
+</hibernate-mapping>

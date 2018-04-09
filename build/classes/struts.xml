@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.multipart.maxSize" value="20971520" />
+	
+<!-- 	此包下放的是不用需要权限验证的action -->
+	<package name="regAndlogin-struts" extends="struts-default">
+		<!-- 	注册Action -->
+	
+		<action name="RegisterAction" class="RegisterAction" method="register" >
+			<result name="success" type="redirect">/web/login.jsp</result>
+			<result name="input">/web/jsp/Register.jsp</result>
+		</action>
+		
+<!-- 		登录action -->
+		<action name="loginAction" class="loginAction" method="login" >
+			<result name="input">/web/login.jsp</result>
+			<result name="success">allPics</result>
+		</action>
+		
+		<!-- 		注销 -->
+		<action name="logout" class="logoutAction" method="logout" >
+			<result name="success">/web/login.jsp</result>
+		</action>
+		
+		<!-- 		获得所有大学 -->
+		<action name="getAllUniversityAction" class="getAllUniversityAction" method="getAllUniversity" >
+		<result name="success">/web/jsp/result/allUniversityPage.jsp</result>
+		</action>
+<!-- 		获得某大学对应的所有学院 -->
+		<action name="getColleges" class="getColleges" method="getCollegesOfUni" >
+			<result name="success">/web/jsp/result/allUniversityPage.jsp</result>
+		</action>
+				
+<!-- 		通过改变大学调用change时间获得该大学对应的所有学院 -->
+		<action name="getAllCollegeAction" class="getAllCollegeAction" method="getAllCollege" >
+		</action>
+		
+<!-- 		检测用户名是否存在 -->
+	<action name="CheckUsername" class="CheckUsername" method="checkUsername" />
+		
+		</package>
+	
+	
+	<package name="global-struts" extends="struts-default">
+	
+	
+<!-- 	定义权限控制拦截器 -->
+	<interceptors>
+		<interceptor name="authority" class="com.wetogether.common.safe.Interceptor.AuthorizationInterceptor" />
+	
+		<!-- 定义一个包含权限控制的拦截器栈 -->
+	
+		<interceptor-stack name="mydefault">
+	
+			<interceptor-ref name="defaultStack" />
+	
+			<interceptor-ref name="authority" />
+	
+		</interceptor-stack>
+	</interceptors>
+	
+	<!-- 定义默认拦截器 -->
+
+<default-interceptor-ref name="mydefault" />
+	
+	<!-- 定义全局处理结果 -->
+
+	<global-results>
+		<result name="login">/web/login.jsp</result>
+	</global-results>
+	
+	
+<!-- 		查询个人详细资料 -->
+		<action name="showMyDetailMessage" class="showMyDetailMessage" method="showMyMessage" >
+			<result name="input">/web/login.jsp</result>
+			<result name="success"  >/web/jsp/MessageManager/MessageManager.jsp</result>
+		</action>
+		<!-- 		查询指定好友的详细资料 -->
+		<action name="getUserMessage" class="getUserMessage" method="findSingleUser" >
+			<result name="input">/web/login.jsp</result>
+			<result name="success"  >/web/jsp/personalCenter/friendMessagePage.jsp</result>
+		</action>
+		
+<!-- 		修改个人资料 -->
+		<action name="modifyMyDetailMessage" class="modifyMyDetailMessage" method="modifyMessage" >
+			<result name="input">/web/jsp/MessageManager/MessageManager.jsp</result>
+			<result name="success"  >/web/jsp/MessageManager/MessageManager.jsp</result>
+		</action>
+<!-- 		 多条件查询用户 -->
+		 <action name="siftingAction" class="siftingAction"  method="findUsers">
+			<result name="success">/web/jsp/personalCenter/addFriendPage.jsp</result>
+			<result name="input">/web/jsp/personalCenter/addFriendPage.jsp</result>
+		</action>		
+		
+
+	
+	</package>
+	
+	<include file="struts/struts_othersspace.xml"></include>
+	<include file="struts/struts_personal_center.xml"></include>
+	<include file="struts/struts_chat.xml"></include>
+</struts>

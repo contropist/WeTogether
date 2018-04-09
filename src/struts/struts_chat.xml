@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="Chat" extends="global-struts">
+
+<!-- 	发送消息 ajax -->
+		<action name="sentMessage" class="sentMessage"  method="sentMessage" />
+<!-- 		接受消息 -->
+		<action name="getMessage" class="getMessage"  method="getMessage" />
+<!-- 	更改消息状态 -->
+	<action name="ChangeMessageStatus" class="ChangeMessageStatus"  method="changeMessageStatus" />
+<!-- 	跳转到聊天页面 -->
+	<action name="ChatNow" class="ChatNow"  method="ChatNow" >
+		<result name="success">/web/jsp/ChatRoom/chatRoom.jsp</result>
+	</action>
+	
+
+<!-- 获得消息提示 -->
+<action name="getNotes" class="getNotes"  method="getNotes" />
+
+		
+			
+		 
+	</package>
+
+</struts>

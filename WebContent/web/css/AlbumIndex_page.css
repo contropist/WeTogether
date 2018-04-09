@@ -1,0 +1,48 @@
+@CHARSET "UTF-8";
+.albumBody{
+	position: relative;
+	left:0%;
+	width: 70%;
+	top:20pt;
+}
+
+.newAlnumDiv{
+	position: absolute;
+	left: 15%;
+	top: 15%;
+	z-index: 99;
+	background-color: white;
+	height: 40%;
+	width: 35%;
+	box-shadow:7px 7px 15px #333333;
+	border: medium;
+	border-radius:15pt;
+}
+
+.newPhotoDiv{
+	position: absolute;
+	left: 25%;
+	top: 10%;
+	z-index: 99;
+	background-color: white;
+	height: 45%;
+	width: 35%;
+	box-shadow:7px 7px 15px #333333;
+	border: medium;
+	border-radius:15pt;
+}
+
+.pageDivideBar{
+	position: relative;
+	left:20%;
+	top:0pt;
+	font-size:18pt;
+}
+.pageDivideBarOfPhoto{
+	position: relative;
+	left:35%;
+	top:0pt;
+	font-size:18pt;
+	
+	
+}

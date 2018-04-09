@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.wetogether.common.hibernate.pojos.BBS" table="T_BBS">
+		<id name="bbsId" type="java.lang.Integer">
+			<column name="BBS_ID" precision="22" scale="0" />
+			<generator class="native" />
+		</id>
+
+		<property name="bbsCotent" type="java.lang.String">
+			<column name="BBS_CONTENT" length="1000"  />
+		</property>
+
+		<property name="subDate" type="java.util.Date">
+			<column name="SUB_DATE" length="20"  />
+		</property>
+
+
+
+		<many-to-one name="commenter"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="COMMENTER_USER_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		
+		<many-to-one name="bbsOwer"
+			class="com.wetogether.common.hibernate.pojos.User" fetch="select"
+			lazy="false">
+			<column name="BBS_OWER_ID" precision="22" scale="0" not-null="true" />
+		</many-to-one>
+		
+
+
+	</class>
+</hibernate-mapping>

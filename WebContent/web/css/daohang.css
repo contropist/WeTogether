@@ -1,0 +1,72 @@
+.menu {
+position:absolute;
+width:70%;
+margin:0px;
+font-family: fantasy;	
+}
+/* Ϊ�����б�����margin��padding�� */
+.menu ul {
+padding:0; 
+list-style-type: none;
+
+}
+/* �����б��������Ŀ����һ���ߺ����ǵ����λ�ã������б?�������ʵ���λ����ÿ���б��� */
+.menu ul li {
+float:left; 
+position:relative;
+box-shadow: 10px 10px 10px grey;
+border-radius:40%;
+
+
+}
+/* �����104px��30�߶����ұ߿�����ӡ����ñ�����ɫ�������С�� */
+.menu ul li a, .menu ul li a:visited {
+display:block; 
+text-align:center; 
+text-decoration:none; 
+width:145px; 
+height:30px; 
+color:white;
+border:1px solid #fff;
+border-width:0 0 0 0;
+background:none; 
+line-height:30px; 
+font-size:25px;
+
+}
+/*ʹ����UL���� */
+.menu ul li ul {
+display: none;
+}
+
+/* specific to non IE browsers */
+
+/* ���ñ�����ǰ����ɫ�����˵����ǻ� */
+.menu ul li:hover a {
+color:black; 
+background:pink;
+color:blue;	
+}
+/* ʹ�Ӳ˵��ɼ����ʽ��λ�����˵��б� */
+.menu ul li:hover ul {
+display:block; 
+position:absolute; 
+top:31px; 
+left:-21pt; 
+width:105px;
+}
+.menu ul li ul  li a {
+	font-size:20px;
+
+}
+/* ��ʽ�Ӳ˵����ӵı�����ǰ����ɫ */
+.menu ul li:hover ul li a {
+display:block; 
+background:none; 
+color:green;
+}
+/* ���ı�����ǰ����ɫ��ͣ���� */
+.menu ul li:hover ul li a:hover {
+background:blue; 
+color:red;
+}

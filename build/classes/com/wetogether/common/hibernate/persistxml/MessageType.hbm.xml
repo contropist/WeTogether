@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.wetogether.common.hibernate.pojos.MessageType" table="T_MESSAGE_TYPE" >
+    
+        <id name="messageTypeId" type="java.lang.Integer">
+            <column name="MESSAGE_TYPE_ID" precision="22" scale="0" />
+            <generator class="native" />
+        </id>
+        
+        <property name="messageTypenName" type="java.lang.String">
+            <column name="MESSAGE_TYPE_NAME" length="60" not-null="true" />
+        </property>
+        
+        <property name="messageTypeDesc" type="java.lang.String">
+            <column name="MESSAGE_TYPE_DESC" length="240" />
+        </property>
+        
+        <list name="messages" inverse="true">
+            <key>
+                <column name="MESSAGE_TYPE_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <index column="MESSAGE_ID" />
+            <one-to-many class="com.wetogether.common.hibernate.pojos.DynamicMessage" />
+        </list>
+        
+    </class>
+</hibernate-mapping>

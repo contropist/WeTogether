@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+
+.articleCategory{
+	position: absolute;
+	left:5%;
+	width: 60%;
+	height: 5%;
+	background-color: #CCCCCC;
+	
+}
+.articleBody{
+	position: absolute;
+	left:5%;
+	top:5%;
+	width: 60%;
+	background-color: White;
+	font-size:14pt;
+	color:balck;
+	border-radius:15%;
+	line-height: 30pt;
+	box-shadow:15px 15px 15px 7px #333333;
+}	
+
+.articleBody2{
+	background-color: White;
+	font-size:14pt;
+	color:balck;
+	line-height: 30pt;
+	box-shadow:15px 15px 15px 7px #333333;
+}
+
+.linkStyle1{
+	color:white;
+}
+
+
+.categoryTr{
+	background-color: #2D335B;
+	color: White;
+	font-size:16pt;
+	
+}
+
+
+.currentTd{
+	background-color: white;
+	color:black;
+}
+
+.newArticle{
+	position: relative;
+	left:5%;
+	width: 60%;
+	height: 5%;
+	background-color: #CCCCCC;
+	
+}
+
